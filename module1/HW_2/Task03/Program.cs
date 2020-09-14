@@ -41,19 +41,19 @@ namespace Task03
             int numswitch = (dis >= 0) ? ((dis == 0) ? 0 : 1) : -1;
             switch (numswitch)
             {
-                case -1:
+                case -1: // discriminant is less than 0
                     Console.WriteLine("Two complex roots exist.");
                     double real = Math.Round(((-b) / (2 * a)), 3);
                     double im = Math.Round(((Math.Sqrt(Math.Abs(dis))) / (2 * a)), 3);
                     Console.WriteLine($"Root x1 equals {real}+{im}i");
                     Console.WriteLine($"Root x2 equals {real}-{im}i");
                     break;
-                case 0:
+                case 0: // discriminant equals 0
                     Console.WriteLine("One root exists.");
                     double root = Math.Round(((-b) / (2 * a)), 3);
                     Console.WriteLine($"Root x equals {root}");
                     break;
-                case 1:
+                case 1: // discriminant is more than 0
                     Console.WriteLine("Two roots exist.");
                     double x1 = Math.Round((((-1 * b) + Math.Sqrt(dis)) / (2 * a)), 3);
                     double x2 = Math.Round((((-1 * b) - Math.Sqrt(dis)) / (2 * a)), 3);
