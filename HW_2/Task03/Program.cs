@@ -81,7 +81,7 @@ namespace Task03
                     }
                     break;
                 case false:
-                    Console.WriteLine("Invalid input or Enter pressed");
+                    Console.WriteLine("Invalid input");
                     break;
             }
         }
