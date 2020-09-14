@@ -7,6 +7,7 @@ namespace Task06
 {
     class Program
     {
+        // Method which parses a variable and validates its value
         public static void Read(out decimal x, out int y)
         {
             Console.Write("Please input the budget value: ");
@@ -29,11 +30,13 @@ namespace Task06
             }
         }
 
+        // Method which calculates a sum based on given budget and percentage
         public static decimal CalculateSum(decimal x, int y)
         {
             return (x * ((decimal)y / 100));
         }
 
+        // Method for forming an output using a currency format
         public static void Output(decimal x)
         {
             CultureInfo us = new CultureInfo("us-US");

@@ -4,11 +4,13 @@ namespace Task07
 {
     class Program
     {
+        // Method which parses a variable and validates its value
         public static bool Read(out double x)
         {
             return double.TryParse(Console.ReadLine(), out x);
         }
 
+        // Method which divides the integer and fractional parts of the given number
         public static void DivNum(double x)
         {
             int integer = (int) x;
@@ -16,6 +18,7 @@ namespace Task07
             Console.WriteLine($"Integer part: {integer}, fraction: {Math.Round(fraction, 3)}.");
         }
 
+        // Method which squares the given number and calculates its square root (if possible)
         public static void PowSqrt(double x)
         {
             double pow2 = x * x;

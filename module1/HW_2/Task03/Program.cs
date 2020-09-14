@@ -5,11 +5,13 @@ namespace Task03
 {
     class Program
     {
+        // Method which parses a variable and validates its value
         public static bool Read(out double x)
         {
             return double.TryParse(Console.ReadLine(), out x);
         }
-
+        
+        // Method which finds a root of a linear equation with given coefficients
         public static void Linear(double b, double c)
         {
             switch (b)
@@ -32,6 +34,7 @@ namespace Task03
             }
         }
 
+        // Method which finds roots of a quadratic equation with given coefficients
         public static void Quadratic(double a, double b, double c)
         {
             double dis = b * b - 4 * a * c;
@@ -66,7 +69,7 @@ namespace Task03
             bool readCheck_a = Read(out a);
             bool readCheck_b = Read(out b);
             bool readCheck_c = Read(out c);
-            bool readCheck = readCheck_a && readCheck_b && readCheck_c;
+            bool readCheck = readCheck_a && readCheck_b && readCheck_c; // Checking the validity of given coefficients
             switch (readCheck)
             {
                 case true:

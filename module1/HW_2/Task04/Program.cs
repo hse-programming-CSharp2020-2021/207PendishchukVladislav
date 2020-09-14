@@ -4,11 +4,13 @@ namespace Task04
 {
     class Program
     {
+        // Method which parses a variable and validates its value
         public static bool Read(out int x)
         {
             return int.TryParse(Console.ReadLine(), out x);
         }
 
+        // Method which inverts number's digits
         public static void Invert(int x)
         {
             int _1stDigit = x / 1000, _2ndDigit = (x / 100) % 10, _3rdDigit = (x / 10) % 10, _4thDigit = x % 10;

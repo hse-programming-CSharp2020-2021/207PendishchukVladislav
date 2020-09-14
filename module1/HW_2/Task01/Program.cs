@@ -5,6 +5,7 @@ namespace Task01
 {
     class Program
     {
+        // Method for exponentiation
         public static double Pow(double x, int powNum)
         {
             for (int i = 0; i < powNum - 1; i++)
@@ -15,6 +16,7 @@ namespace Task01
             return x;
         }
 
+        // Method for calculating a function value
         public static double CalculateFunc(double x)
         {
             double _1stNum = 0, _2ndNum = 0, _3rdNum = 0;
@@ -36,6 +38,7 @@ namespace Task01
             return _1stNum + _2ndNum - _3rdNum + x + x - 4;
         }
 
+        // Method which parses a variable and validates its value
         public static bool Read(out double x)
         {
             return double.TryParse(Console.ReadLine(), out x);

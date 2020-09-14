@@ -5,6 +5,7 @@ namespace Task02
 {
     class Program
     {
+        // Method for sorting number's digits
         public static int SortMax(int x)
         {
             int tmp;
@@ -34,10 +35,12 @@ namespace Task02
             return (_3rdNum * 100 + _2ndNum * 10 + _1stNum);
         }
 
+        // Method which parses a variable and validates its value
         public static bool Read(out int x)
         {
             return int.TryParse(Console.ReadLine(), out x);
         }
+
         static void Main(string[] args)
         {
             int p;

@@ -4,11 +4,13 @@ namespace Task05
 {
     class Program
     {
+        // Method which parses a variable and validates its value
         public static bool Read(out double x)
         {
             return double.TryParse(Console.ReadLine(), out x);
         }
 
+        // Method which checks the triangle inequality for given numbers
         public static string TriangleIneq(double a, double b, double c)
         {
             double maxnum = Math.Max(a, Math.Max(b, c));
