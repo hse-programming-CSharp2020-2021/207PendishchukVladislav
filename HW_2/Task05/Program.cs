@@ -20,7 +20,7 @@ namespace Task05
             double a, b, c;
             Console.Write("Please input three numbers: ");
             string output = (Read(out a) && Read(out b) && Read(out c)) ? TriangleIneq(a, b, c) : "Invalid input.";
-            Console.WriteLine(output);
+            Console.WriteLine(output + Environment.NewLine);
         }
     }
 }
