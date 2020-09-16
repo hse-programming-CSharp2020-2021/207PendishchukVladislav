@@ -6,6 +6,12 @@ namespace Task02
 {
     class Program
     {
+        // Method which parses a variable and validates its value
+        public static bool Read(out int x)
+        {
+            return int.TryParse(Console.ReadLine(), out x);
+        }
+
         // Method which inverts given number
         public static void Invert(ref int x)
         {
@@ -25,11 +31,19 @@ namespace Task02
                 x += digits[i] * (int)Math.Pow(10, (digits.Count - 1 - i));
             }
         }
+
         static void Main(string[] args)
         {
-            int num = Convert.ToInt32(Console.ReadLine());
-            Invert(ref num);
-            Console.WriteLine(num);
+            int num;
+            if (Read(out num))
+            {
+                Invert(ref num);
+                Console.WriteLine(num);
+            }
+            else
+            {
+                Console.WriteLine("Incorrect input");
+            }
         }
     }
 }
