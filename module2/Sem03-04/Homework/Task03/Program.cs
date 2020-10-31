@@ -67,11 +67,13 @@ namespace Task03
 
         static void Main(string[] args)
         {
+            // Список многоугольников.
             List<Polygon> polygons = new List<Polygon>();
             int n = 1;
             int sides;
             double radius;
 
+            // Ввод информации об объектах.
             do
             {
                 Console.WriteLine($"Объект {n}");
@@ -93,6 +95,7 @@ namespace Task03
             } while (true);
 
 
+            // Нахождение минимальной и максимальной площади многоугольников.
             double maxArea = 0;
             double minArea = double.MaxValue;
 
@@ -110,6 +113,7 @@ namespace Task03
             }
 
 
+            // Вывод информации об объектах.
             for (int i = 0; i < polygons.Count; i++)
             {
                 Console.WriteLine($"\nОбъект {i + 1}");
@@ -117,7 +121,8 @@ namespace Task03
                 if (polygons[i].Area == maxArea)
                 {
                     polygons[i].GetPolygonInfo(ConsoleColor.Red);
-                } else if (polygons[i].Area == minArea)
+                }
+                else if (polygons[i].Area == minArea)
                 {
                     polygons[i].GetPolygonInfo(ConsoleColor.Green);
                 }
