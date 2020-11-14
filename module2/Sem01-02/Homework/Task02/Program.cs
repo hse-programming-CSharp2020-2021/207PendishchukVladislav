@@ -6,38 +6,28 @@ namespace Task02
     class Program
     {
         /// <summary>
-        /// Метод валидации и записи целого числа в переменную.
-        /// </summary>
-        /// <param name="number"> Переменная для записи. </param>
-        /// <returns></returns>
-        static bool Read(out int number)
-        {
-            return int.TryParse(Console.ReadLine(), out number);
-        }
-
-        /// <summary>
         /// Метод генерации двумерного массива n на n.
         /// </summary>
         /// <param name="n"> Размер массива. </param>
         /// <returns> Двумерный массив. </returns>
-        static int[][] GenerateArray(int n)
+        static int[][] GenerateArray(string[] input)
         {
-            int[][] array = new int[n][];
+            int[] row = new int[input.Length];
 
-            int[] row = new int[n];
-
-            for (int i = 0; i < row.Length; i++)
+            for (int i = 0; i < input.Length; i++)
             {
-                row[i] = i + 1;
+                row[i] = Convert.ToInt32(input[i]);
             }
 
-            int[] firstRow = new int[n];
+            int[][] array = new int[row.Length][];
+
+            int[] firstRow = new int[row.Length];
             Array.Copy(row, firstRow, row.Length);
             array[0] = firstRow;
 
-            for (int k = 1; k < n; k++)
+            for (int k = 1; k < row.Length; k++)
             {
-                int[] rowCopy = new int[n];
+                int[] rowCopy = new int[row.Length];
                 Array.Copy(row, rowCopy, row.Length);
                 for (int i = 0; i < rowCopy.Length; i++)
                 {
@@ -59,30 +49,25 @@ namespace Task02
             return array;
         }
 
-        static void Main(string[] args)
+        // Метод вывода зубчатого массива.
+        private static void PrintJaggedArray(int[][] array)
         {
-            int n;
+            if (array == null) return;
 
-            // Ввод целого числа.
-            do
+            foreach (var line in array)
             {
-                Console.WriteLine("Введите целое ненулевое число N: ");
-            } while (!Read(out n) || n <= 0);
-
-
-            // Генерация массива.
-            int[][] array = GenerateArray(n);
-
-            // Вывод массива на экран.
-            for (int i = 0; i < n; i++)
-            {
-                for (int j = 0; j < n; j++)
+                foreach (var num in line)
                 {
-                    Console.Write(array[i][j].ToString().PadRight(10));
+                    Console.Write(num);
                 }
 
                 Console.WriteLine();
             }
+        }
+
+        static void Main(string[] args)
+        {
+            PrintJaggedArray(GenerateArray(Console.ReadLine().Split(',')));
         }
     }
 }
