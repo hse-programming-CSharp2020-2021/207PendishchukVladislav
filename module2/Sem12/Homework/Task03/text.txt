@@ -1,0 +1,188 @@
+using System;
+using System;
+using System.IO;
+using System.IO;
+
+
+namespace Task03
+namespace Task03
+{
+{
+class Program
+    class Program
+{
+    {
+static int[] stat = new int[26]; // статистика по лат. буквам
+        static int[] stat = new int[26]; // статистика по лат. буквам
+
+
+/// <summary>
+        /// <summary>
+/// Вычисляет количество открывающихся и закрывающихся скобок в строке
+        /// Вычисляет количество открывающихся и закрывающихся скобок в строке
+/// </summary>
+        /// </summary>
+/// <param name="tmp">строка символов</param>
+        /// <param name="tmp">строка символов</param>
+/// <param name="openBrackets">количество открывающихся скобок</param>
+        /// <param name="openBrackets">количество открывающихся скобок</param>
+/// <param name="closedBrackets">количество закрывающихся скобок</param>
+        /// <param name="closedBrackets">количество закрывающихся скобок</param>
+private static void BracketsCount(string tmp, ref int openBrackets, ref int closedBrackets)
+        private static void BracketsCount(string tmp, ref int openBrackets, ref int closedBrackets)
+{
+        {
+bool stringFlag = false;
+            bool stringFlag = false;
+for (int i = 0; i < tmp.Length; i++)
+            for (int i = 0; i < tmp.Length; i++)
+{
+            {
+// статистика по строчным латинским символам
+                // статистика по строчным латинским символам
+if (tmp[i] >= 'a' && tmp[i] <= 'z')
+                if (tmp[i] >= 'a' && tmp[i] <= 'z')
+stat[tmp[i] - 'a']++;
+                    stat[tmp[i] - 'a']++;
+if ((tmp[i] == '"' || tmp[i] == '\'')  && !stringFlag) stringFlag = true;
+                if ((tmp[i] == '"' || tmp[i] == '\'')  && !stringFlag) stringFlag = true;
+else if ((tmp[i] == '"' || tmp[i] == '\'') && stringFlag) stringFlag = false;
+                else if ((tmp[i] == '"' || tmp[i] == '\'') && stringFlag) stringFlag = false;
+if (tmp[i] == '{' && !stringFlag) openBrackets++;
+                if (tmp[i] == '{' && !stringFlag) openBrackets++;
+if (tmp[i] == '}' && !stringFlag) closedBrackets++;
+                if (tmp[i] == '}' && !stringFlag) closedBrackets++;
+}
+            }
+}
+        }
+
+
+/// <summary>
+        /// <summary>
+/// метод формирует строку со статистикой по строчным латинским,
+        /// метод формирует строку со статистикой по строчным латинским, 
+/// символам, содержащимся в тексте файла
+        /// символам, содержащимся в тексте файла
+/// </summary>
+        /// </summary>
+/// <returns>возвращает строку с представлением статистики</returns>
+        /// <returns>возвращает строку с представлением статистики</returns>
+public static string StatToString()
+        public static string StatToString()
+{
+        {
+string output = string.Empty;
+            string output = string.Empty;
+for (int i = 0; i < stat.Length; i++)
+            for (int i = 0; i < stat.Length; i++)
+{
+            {
+output += (char)('a' + i) + " - " + stat[i] + " ";
+                output += (char)('a' + i) + " - " + stat[i] + " ";
+}
+            }
+return output;
+            return output;
+}
+        }
+
+
+
+
+static void Main(string[] args)
+        static void Main(string[] args)
+{
+        {
+string tmp;
+            string tmp;
+int openBrackets = 0; // количество {
+            int openBrackets = 0; // количество {
+int closedBrackets = 0; // количество }
+            int closedBrackets = 0; // количество }
+int total = 0; // общее количество символов файла
+            int total = 0; // общее количество символов файла
+
+
+var In = Console.In; // Запоминаем стандартный входной поток
+            var In = Console.In; // Запоминаем стандартный входной поток
+var Out = Console.Out;
+            var Out = Console.Out;
+// Создаем файл и текстовый входной поток:
+            // Создаем файл и текстовый входной поток: 
+StreamReader stream_in = new StreamReader(@"..\..\..\Program.cs");
+            StreamReader stream_in = new StreamReader(@"..\..\..\Program.cs");
+// Создаем файл и текстовый поток выхода:
+            // Создаем файл и текстовый поток выхода: 
+StreamWriter stream_out = new StreamWriter(@"..\..\..\text.txt");
+            StreamWriter stream_out = new StreamWriter(@"..\..\..\text.txt");
+// Настраиваем стандартный входной поток на чтение из файла:
+            // Настраиваем стандартный входной поток на чтение из файла:
+Console.SetIn(stream_in);
+            Console.SetIn(stream_in);
+// Настраиваем стандартный поток вывода на запись в файл:
+            // Настраиваем стандартный поток вывода на запись в файл:
+Console.SetOut(stream_out);
+            Console.SetOut(stream_out);
+while (true)
+            while (true)
+{ // цикл бесконечен
+            { // цикл бесконечен
+tmp = stream_in.ReadLine();
+                tmp = stream_in.ReadLine();
+if (tmp == null) break; // условие прерывание цикла
+                if (tmp == null) break; // условие прерывание цикла
+total += tmp.Length;
+                total += tmp.Length;
+// подсчёт количества фигурных скобок
+                // подсчёт количества фигурных скобок
+BracketsCount(tmp, ref openBrackets, ref closedBrackets);
+                BracketsCount(tmp, ref openBrackets, ref closedBrackets);
+Console.WriteLine(tmp.Trim());
+                Console.WriteLine(tmp.Trim());
+Console.WriteLine(tmp);
+                Console.WriteLine(tmp);
+}
+            }
+// восстанавливаем состояние потока
+            // восстанавливаем состояние потока
+stream_in.Close();
+            stream_in.Close();
+Console.SetIn(In);
+            Console.SetIn(In);
+// обрабатываем данные по скобкам
+            // обрабатываем данные по скобкам
+tmp = $"{tmp}";
+            tmp = $"{tmp}";
+tmp = "Баланс скобок не соблюдён";
+            tmp = "Баланс скобок не соблюдён";
+if (openBrackets == closedBrackets)
+            if (openBrackets == closedBrackets)
+tmp = "Баланс скобок соблюдён, количество блоков " + closedBrackets;
+                tmp = "Баланс скобок соблюдён, количество блоков " + closedBrackets;
+Console.WriteLine(StatToString());
+            Console.WriteLine(StatToString());
+Console.WriteLine(tmp);
+            Console.WriteLine(tmp);
+// восстанавливаем состояние потока выхода
+            // восстанавливаем состояние потока выхода
+stream_out.Close();
+            stream_out.Close();
+Console.SetOut(Out);
+            Console.SetOut(Out);
+Console.WriteLine("Для завершения работы нажмите любую клавишу.");
+            Console.WriteLine("Для завершения работы нажмите любую клавишу.");
+Console.ReadKey();
+            Console.ReadKey();
+
+
+} // end of Main()
+        } // end of Main()
+
+
+}
+    }
+}
+}
+a - 87 b - 3 c - 31 d - 14 e - 108 f - 16 g - 30 h - 5 i - 79 j - 0 k - 17 l - 39 m - 59 n - 78 o - 60 p - 43 q - 0 r - 87 s - 83 t - 141 u - 29 v - 5 w - 4 x - 2 y - 8 z - 1 
+Баланс скобок соблюдён, количество блоков 9
